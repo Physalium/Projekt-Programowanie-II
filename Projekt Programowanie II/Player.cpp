@@ -2,11 +2,6 @@
 
 
 
-Player::Player()
-{
-}
-
-
 Player::Player(string Name):name(Name), money(StartMoney)
 {
 }
