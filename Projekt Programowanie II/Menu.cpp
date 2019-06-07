@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "GameState.h"
 #include <iostream>
 
 Menu::Menu(float width, float height)
@@ -49,6 +50,54 @@ Menu::Menu(float width, float height)
 
 Menu::~Menu()
 {
+}
+
+void Menu::handleInput()
+{
+	sf::Event event;
+
+	while (this->game->window.pollEvent(event))
+	{
+		switch (event.type)
+		{
+		case sf::Event::KeyReleased:
+			switch (event.key.code)
+			{
+			case sf::Keyboard::Up:
+				this->MoveUp();
+				break;
+
+			case sf::Keyboard::Down:
+				this->MoveDown();
+				break;
+
+			case sf::Keyboard::Return:
+				switch (this->GetPressedItem())
+				{
+				case 0:
+					std::cout << "ULEPSZENIA---" << std::endl;
+					break;
+				case 1:
+					std::cout << "SPRZEDAJ PRZEDMIOTY----" << std::endl;
+					break;
+				case 2:
+					std::cout << "LICYTUJ----" << std::endl;;
+
+					break;
+				}
+
+				break;
+			}
+
+			break;
+		case sf::Event::Closed:
+			this->game->window.close();
+
+			break;
+
+		}
+	}
+
 }
 
 void Menu::draw(sf::RenderWindow &window)
