@@ -1,22 +1,28 @@
-#pragma once
-
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
+#ifndef GAME_H
+#define GAME_H
 
 #include <stack>
-class Gamestate;
+#include <SFML/Graphics.hpp>
+
+class GameState;
 
 class Game
 {
 public:
-	std::stack<GameState *> states;
+
+	std::stack<GameState*> states;
+
 	sf::RenderWindow window;
+
 	void pushState(GameState* state);
 	void popState();
 	void changeState(GameState* state);
-	void gameLoop();
 	GameState* peekState();
+
+	void gameLoop();
+
 	Game();
-	virtual ~Game();
+	~Game();
 };
 
+#endif /* GAME_HPP */
