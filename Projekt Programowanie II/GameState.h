@@ -8,7 +8,6 @@ class GameState
 public:
 	Game* game=nullptr;
 	virtual void draw() = 0;
-	virtual void update() = 0;
 	virtual void handleInput() = 0;
 };
 

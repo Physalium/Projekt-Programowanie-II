@@ -18,13 +18,10 @@ void Menu::draw()
 		this->game->window.draw(info[i]);
 	}
 
-
+	
 	return;
 }
 
-void Menu::update()
-{
-}
 
 void Menu::handleInput()
 {
@@ -50,6 +47,7 @@ void Menu::handleInput()
 				{
 				case 0:
 					std::cout << "ULEPSZENIA---" << std::endl;
+					cout << "Nazwa gracza to jest::" << game->player.getPlayerName();
 					break;
 				case 1:
 					std::cout << "SPRZEDAJ PRZEDMIOTY----" << std::endl;
@@ -82,11 +80,12 @@ Menu::Menu(Game * game)
 	{
 		std::cout << "Cant find consola.ttf file" << std::endl;
 	}
-
+	std::string name = "Nazwa gracza: ";
+	name += game->player.getPlayerName();
 	info[0].setFont(font);
 	info[0].setCharacterSize(30);
 	info[0].setFillColor(sf::Color::White);
-	info[0].setString("nazwa gracza: tomek");
+	info[0].setString(name);
 	info[0].setPosition(sf::Vector2f(0, height / (INFO_NUMBER_OF_ITEMS + 1) * 1 - 100));
 
 	info[1].setFont(font);

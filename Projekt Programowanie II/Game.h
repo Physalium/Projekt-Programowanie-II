@@ -3,7 +3,7 @@
 
 #include <stack>
 #include <SFML/Graphics.hpp>
-
+#include "Player.h"
 class GameState;
 
 class Game
@@ -13,7 +13,7 @@ public:
 	std::stack<GameState*> states;
 
 	sf::RenderWindow window;
-
+	Player player;
 	void pushState(GameState* state);
 	void popState();
 	void changeState(GameState* state);

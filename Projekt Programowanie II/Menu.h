@@ -20,7 +20,6 @@ public:
 	void MoveDown();
 	int GetPressedItem() { return selectedItemIndex; }
 	virtual void draw();
-	virtual void update();
 	virtual void handleInput();
 	Menu(Game* game);	
 };

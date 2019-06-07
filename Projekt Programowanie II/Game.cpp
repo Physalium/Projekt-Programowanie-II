@@ -54,7 +54,7 @@ void Game::gameLoop()
 
 Game::Game()
 {
-	this->window.create(sf::VideoMode(800, 600), "Symulator Aukcji Gara¿owych");
+	this->window.create(sf::VideoMode(900, 900), "Symulator Aukcji Garazowych");
 	this->window.setFramerateLimit(60);
 }
 
