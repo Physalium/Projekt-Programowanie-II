@@ -4,6 +4,7 @@ using std::cout;
 using std::endl;
 #include "Menu.h"
 #include "Player.h"
+//#include "Game.h"
 Start::Start(Game* game)
 {
 	this->game = game;
@@ -63,7 +64,9 @@ void Start::handleInput()
 				}
 				
 				input +=static_cast<char>(event.text.unicode);
-				menu[1].setString(input);
+				
+				PlayerName += static_cast<char>(event.text.unicode);
+				menu[1].setString(PlayerName);
 			}
 
 		break;
@@ -84,6 +87,5 @@ void Start::handleInput()
 void Start::loadgame()
 {
     this->game->pushState(new Menu(this->game));
-
     return;
 }

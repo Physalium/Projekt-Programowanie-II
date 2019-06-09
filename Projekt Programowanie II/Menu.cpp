@@ -47,7 +47,6 @@ void Menu::handleInput()
 				{
 				case 0:
 					std::cout << "ULEPSZENIA---" << std::endl;
-					cout << "Nazwa gracza to jest::" << game->player.getPlayerName();
 					break;
 				case 1:
 					std::cout << "SPRZEDAJ PRZEDMIOTY----" << std::endl;
