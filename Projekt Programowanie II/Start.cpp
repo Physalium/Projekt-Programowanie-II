@@ -25,7 +25,7 @@ Start::Start(Game* game)
 	menu[1].setFont(font);
 	menu[1].setCharacterSize(30);
 	menu[1].setFillColor(sf::Color::White);
-	menu[1].setString(PlayerName);
+	menu[1].setString(playerName);
 	menu[1].setPosition(sf::Vector2f(50, height / (MAX_NUMBER_OF_OPTIONS + 1) * 1 - 100));
 }
 
@@ -33,6 +33,7 @@ Start::Start(Game* game)
 
 void Start::draw()
 {
+	
 	for (int i = 0; i < MAX_NUMBER_OF_OPTIONS; i++)
 	{
 		this->game->window.draw(menu[i]);
@@ -63,7 +64,8 @@ void Start::handleInput()
 				}
 				
 				input +=static_cast<char>(event.text.unicode);
-				menu[1].setString(input);
+				playerName += static_cast<char>(event.text.unicode);
+				menu[1].setString(playerName);
 			}
 
 		break;
