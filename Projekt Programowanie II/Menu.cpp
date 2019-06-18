@@ -114,7 +114,7 @@ Menu::Menu(Game * game)
 	menu[2].setFont(font);
 	menu[2].setCharacterSize(30);
 	menu[2].setFillColor(sf::Color::White);
-	menu[2].setString("LICYTUJ gowno gowwno");
+	menu[2].setString("LICYTUJ dupa dupa");
 	menu[2].setPosition(sf::Vector2f(width / 2 + 100, height / (MAX_NUMBER_OF_ITEMS + 1) * 3));
 
 	selectedItemIndex = 0;
