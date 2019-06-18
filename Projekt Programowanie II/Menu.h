@@ -3,7 +3,6 @@
 #define MENU_H
 #include "GameState.h"
 #include <SFML/Graphics.hpp>
-
 #define MAX_NUMBER_OF_ITEMS 3
 #define INFO_NUMBER_OF_ITEMS 3
 class Menu :
