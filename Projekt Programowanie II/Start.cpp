@@ -62,18 +62,6 @@ void Start::handleInput()
 					loadgame();
 					break;
 				}
-
-				if (event.text.unicode == 8) // backspace
-				{
-					
-					input.erase(input.length()-1);
-					PlayerName.erase(PlayerName.length()-1);
-					//temp= input.substr(0, input.length - 1);
-					//input = temp;
-					//temp= PlayerName.substr(0, PlayerName.length - 1);
-					//PlayerName = temp;
-					
-				}
 				
 				input +=static_cast<char>(event.text.unicode);
 				
