@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Karol\Desktop\SFML-2.5.1-windows-vc15-32-bit\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Kol\Desktop\SFML-2.5.1-windows-vc15-32-bit\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Users\Karol\Desktop\SFML-2.5.1-windows-vc15-32-bit\SFML-2.5.1\lib</AdditionalLibraryDirectories>
@@ -104,7 +104,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Karol\Desktop\SFML-2.5.1-windows-vc15-32-bit\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Kol\Desktop\SFML-2.5.1-windows-vc15-32-bit\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
