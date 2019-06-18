@@ -90,7 +90,7 @@ Menu::Menu(Game * game)
 	info[1].setFont(font);
 	info[1].setCharacterSize(30);
 	info[1].setFillColor(sf::Color::White);
-	info[1].setString("Ulepszenia: ");
+	info[1].setString("Posiadane ulepszenia: ");
 	info[1].setPosition(sf::Vector2f(0, height / (INFO_NUMBER_OF_ITEMS + 1) * 2 - 100));
 
 	info[2].setFont(font);
@@ -102,7 +102,7 @@ Menu::Menu(Game * game)
 	menu[0].setFont(font);
 	menu[0].setCharacterSize(30);
 	menu[0].setFillColor(sf::Color::White);
-	menu[0].setString("ULEPSZENIA");
+	menu[0].setString("KUP ULEPSZENIA");
 	menu[0].setPosition(sf::Vector2f(width / 2 + 100, height / (MAX_NUMBER_OF_ITEMS + 1) * 1));
 
 	menu[1].setFont(font);

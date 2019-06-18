@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "string.h"
 
 
 std::string Player::getPlayerName()
@@ -24,6 +24,7 @@ void Player::setBalance(int balance)
 
 Player::Player()
 {
+	
 }
 
 

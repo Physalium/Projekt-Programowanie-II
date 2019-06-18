@@ -11,7 +11,7 @@ class Start :
 {
 	std::string input = "";
 	void loadgame();
-	std::string PlayerName="Nazwa gracza: ";
+	std::string PlayerName="Podaj nazwe gracza: ";
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_OPTIONS];
 public:

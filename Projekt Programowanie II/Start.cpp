@@ -20,8 +20,8 @@ Start::Start(Game* game)
 	menu[0].setFont(font);
 	menu[0].setCharacterSize(60);
 	menu[0].setFillColor(sf::Color::Blue);
-	menu[0].setString("Aukcje garazowe");
-	menu[0].setPosition(sf::Vector2f(width/2 - 100, 10));
+	menu[0].setString("Symulator aukcji garazowych");
+	menu[0].setPosition(sf::Vector2f(width/2 - 444, 10));
 
 	menu[1].setFont(font);
 	menu[1].setCharacterSize(30);
