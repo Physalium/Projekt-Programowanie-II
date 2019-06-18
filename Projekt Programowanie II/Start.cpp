@@ -52,6 +52,13 @@ void Start::handleInput()
 		{
 		case sf::Event::TextEntered:
 		{
+			if (event.text.unicode == 8)
+			{
+				input.pop_back();
+				PlayerName.pop_back();
+				menu[1].setString(PlayerName);
+			}
+
 			if (event.text.unicode < 128 && event.text.unicode > 47 || event.text.unicode == 13
 				|| event.text.unicode == 32)
 			{
@@ -62,6 +69,7 @@ void Start::handleInput()
 					loadgame();
 					break;
 				}
+				
 				
 				input +=static_cast<char>(event.text.unicode);
 				
