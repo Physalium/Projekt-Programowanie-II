@@ -1,11 +1,13 @@
 #pragma once
-#include <vector>
+#ifndef ITEMS_H
+#define ITEMS_H
 #include <string>
+#include "Player.h"
 
 class Items
 {
-	std::vector <Items*> rand_items;
 public:
+	std::vector <Items*> rand_items;
 	int id;
 	std::string name;
 	int value;
@@ -15,3 +17,4 @@ public:
 };
 
 
+#endif

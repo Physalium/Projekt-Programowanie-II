@@ -4,6 +4,8 @@
 #include <iostream>
 int main()
 {
+
+
 	Game game;
 	game.pushState(new Start(&game));
 	game.gameLoop();
