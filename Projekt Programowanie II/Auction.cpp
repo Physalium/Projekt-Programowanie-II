@@ -5,8 +5,45 @@
 #include <iostream>
 using std::cout;
 using std::endl;
+#include <fstream>
+#include <ctime>
 
+void Auction::randItems()
+{
+	std::vector <int> list_of_randoms;
+	std::fstream plik;
+	srand(time(nullptr));
+	plik.open("items.txt", std::ios::in);
+	for (int i = 0; i < 6; i++)
+	{
+		int random = (rand() % 35);
+		list_of_randoms.push_back(random);
 
+		std::string rand_item = {};
+
+		
+		if (plik.is_open())
+		{
+			cout << "Plik sie otworzyl"<<endl; // w ogole tego nie pokazuje w konsoli 
+			for (int a = 0; a <= random; a++)
+			{
+				getline(plik, rand_item);
+			}
+			int a;
+			std::string b;
+			int c;
+			plik >> a >> b >> c;
+
+			game->player.rand_items.push_back(new Items(a, b, c));
+		}
+		else
+		{
+			//exit(0); tego nie dawaj bo wtedy wyl¹czy caly program 
+		}
+
+		plik.close();
+	}
+}
 Auction::Auction(Game * game)
 {
 
@@ -25,6 +62,11 @@ Auction::Auction(Game * game)
 	menu[0].setFillColor(sf::Color::Red);
 	menu[0].setString("Start");
 	menu[0].setPosition(sf::Vector2f(width / 2 - 444, 10));
+	randItems();
+	for (auto i : game->player.rand_items)
+	{
+		cout << i->name << endl;
+	}
 }
 
 

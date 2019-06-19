@@ -15,6 +15,7 @@ class Auction :
 	sf::Text menu[MAX_NUMBER];
 
 public:
+	void randItems();
 	virtual ~Auction();
 	Auction(Game* game);
 	virtual void draw();
