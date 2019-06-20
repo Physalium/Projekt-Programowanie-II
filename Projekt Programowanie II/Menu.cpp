@@ -124,6 +124,10 @@ Menu::Menu(Game * game)
 }
 
 
+void Menu::update()
+{
+}
+
 void Menu::MoveUp()
 {
 	if (selectedItemIndex - 1 >= 0)

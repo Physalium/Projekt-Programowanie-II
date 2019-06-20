@@ -4,6 +4,9 @@ using std::cout;
 using std::endl;
 #include "Menu.h"
 #include "Player.h"
+void Start::update()
+{
+}
 //#include "Game.h"
 Start::Start(Game* game)
 {
@@ -54,9 +57,12 @@ void Start::handleInput()
 		{
 			if (event.text.unicode == 8)
 			{
-				input.pop_back();
-				PlayerName.pop_back();
-				menu[1].setString(PlayerName);
+				if (input.size() != 0)
+				{
+					input.pop_back();
+					PlayerName.pop_back();
+					menu[1].setString(PlayerName);
+				}
 			}
 
 			if (event.text.unicode < 128 && event.text.unicode > 47 || event.text.unicode == 13

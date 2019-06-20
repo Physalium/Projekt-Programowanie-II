@@ -38,14 +38,14 @@ GameState* Game::peekState()
 
 void Game::gameLoop()
 {
-	
-
 	while (this->window.isOpen())
 	{
 
+		
 
 		if (peekState() == nullptr) continue;
-		peekState()->handleInput();;
+		peekState()->handleInput();
+		peekState()->update();
 		this->window.clear(sf::Color::Black);
 		peekState()->draw();
 		this->window.display();
@@ -54,8 +54,16 @@ void Game::gameLoop()
 
 Game::Game()
 {
+
 	this->window.create(sf::VideoMode(900, 900), "Symulator Aukcji Garazowych");
 	this->window.setFramerateLimit(60);
+
+	bot1.setPlayerName("Adam");
+	
+	bot2.setPlayerName("Marcin");
+	
+	bot3.setPlayerName("Roman");
+	
 }
 
 Game::~Game()

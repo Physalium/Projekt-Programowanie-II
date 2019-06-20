@@ -3,17 +3,21 @@
 #include <SFML/Window.hpp>
 #include "GameState.h"
 #include <iostream>
+#include "Bidding.h"
 using std::cout;
 using std::endl;
 #include <fstream>
 #include <ctime>
-
+enum Key {Enter=13};
+void Auction::update()
+{
+}
 void Auction::randItems()
 {
 	std::vector <int> list_of_randoms;
 	std::fstream plik;
-	srand(time(nullptr));
-	plik.open("items.txt", std::ios::in);
+	srand(time(0));
+	
 	for (int i = 0; i < 6; i++)
 	{
 		int random = (rand() % 35);
@@ -21,10 +25,9 @@ void Auction::randItems()
 
 		std::string rand_item = {};
 
-		
+		plik.open("items.txt", std::ios::in);
 		if (plik.is_open())
 		{
-			cout << "Plik sie otworzyl"<<endl; // w ogole tego nie pokazuje w konsoli 
 			for (int a = 0; a <= random; a++)
 			{
 				getline(plik, rand_item);
@@ -38,10 +41,16 @@ void Auction::randItems()
 		}
 		else
 		{
-			//exit(0); tego nie dawaj bo wtedy wyl¹czy caly program 
+			cout << "Nie mozna otworzyc pliku .txt" << endl;
+			break;
 		}
 
 		plik.close();
+	}
+	/**/
+	for (auto i : game->player.rand_items)
+	{
+		cout << i->name << "," << i->value << endl;
 	}
 }
 Auction::Auction(Game * game)
@@ -62,11 +71,8 @@ Auction::Auction(Game * game)
 	menu[0].setFillColor(sf::Color::Red);
 	menu[0].setString("Start");
 	menu[0].setPosition(sf::Vector2f(width / 2 - 444, 10));
-	randItems();
-	for (auto i : game->player.rand_items)
-	{
-		cout << i->name << endl;
-	}
+	
+	
 }
 
 
@@ -86,5 +92,25 @@ void Auction::draw()
 
 void Auction::handleInput()
 {
+	sf::Event event;
+	while (this->game->window.pollEvent(event))
+	{
+		switch (event.type)
+		{
+		
+		case sf::Event::Closed:
+			this->game->window.close();
+			break;
+		case sf::Event::TextEntered:
+			if(event.text.unicode == Key::Enter )
+			{
+				this->game->pushState(new Bidding(this->game));
+				//randItems();
+			}
+				
+		default:
+			break;
 
+		}
+	}
 }

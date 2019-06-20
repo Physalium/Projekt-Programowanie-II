@@ -4,9 +4,11 @@
 #include <vector>
 class Player
 {
+	int currentBidding = 0;
 	std::string PlayerName="default";
 	// vector <Upgrade> upgrade 
-	int Balance=0;
+	int Balance = 1000;
+	int BotAi(int bid);
 public:
 
 	std::vector <Items*> rand_items;

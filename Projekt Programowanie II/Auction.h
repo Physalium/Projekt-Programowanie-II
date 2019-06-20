@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef START_H
-#define SMART_H
+#ifndef AUCTION_H
+#define AUCTION_H
 
 #include "GameState.h"
 
@@ -15,6 +15,7 @@ class Auction :
 	sf::Text menu[MAX_NUMBER];
 
 public:
+	virtual void update();
 	void randItems();
 	virtual ~Auction();
 	Auction(Game* game);

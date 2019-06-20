@@ -2,6 +2,15 @@
 #include "string.h"
 
 
+int Player::BotAi(int bid)
+{
+	if (bid < Balance)
+	{
+		int diff = Balance - bid;
+		return (bid + diff * 0.2);
+	}
+}
+
 std::string Player::getPlayerName()
 {
 	return PlayerName;

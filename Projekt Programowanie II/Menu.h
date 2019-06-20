@@ -16,7 +16,7 @@ class Menu :
 	sf::Text menu[MAX_NUMBER_OF_ITEMS];
 	sf::Text info[INFO_NUMBER_OF_ITEMS];
 public:
-
+	virtual void update();
 	void MoveUp();
 	void MoveDown();
 	int GetPressedItem() { return selectedItemIndex; }

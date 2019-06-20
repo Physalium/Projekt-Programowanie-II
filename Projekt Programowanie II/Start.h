@@ -15,7 +15,7 @@ class Start :
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_OPTIONS];
 public:
-	
+	virtual void update();
 	Start(Game* game);
 	virtual void draw();
 	virtual void handleInput();
