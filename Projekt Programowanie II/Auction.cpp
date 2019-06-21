@@ -8,22 +8,30 @@ using std::cout;
 using std::endl;
 #include <fstream>
 #include <ctime>
-enum Key {Enter=13};
+enum Key { Enter = 13 };
 void Auction::showItems()
 {
 	int height = game->window.getSize().y;
 	int width = game->window.getSize().x;
-
-	if (!Textures[0].loadFromFile("Images/6.png"))
+	for (int i = 0; i < 6; i++)
 	{
-		cout<<"Nie mozna znalezc pliku z tekstura"<<endl;
-		return;
+		std::vector<std::string> num_pic(list_of_randoms.begin(), list_of_randoms.end());
+
+		std::string number_of_pic = "Images/" + num_pic[i] + ".png";
+
+		if (!Textures[i].loadFromFile(number_of_pic))
+		{
+			cout << "Nie mozna znalezc pliku z tekstura" << endl;
+			return;
+		}
+
+		Sprites[i].setTexture(Textures[i]);
+		Sprites[i].setPosition(sf::Vector2f(width / 2 + i * 3, height / 2));
+		this->game->window.draw(Sprites[i]);
 	}
-	Sprites[0].setTexture(Textures[0]);
-	Sprites[0].setPosition(sf::Vector2f(width/2, height/2));
-	Sprites[0].setScale(4, 4);
-	this->game->window.draw(Sprites[0]);
 	this->game->window.display();
+
+
 	sf::Clock clock;
 	sf::Time time = clock.getElapsedTime();
 	sf::Time timer = sf::seconds(3);
@@ -35,16 +43,16 @@ void Auction::showItems()
 		//cout << time.asSeconds() << endl;
 		//cout << timer.asSeconds() << endl;
 	}
+
 }
 void Auction::update()
 {
 }
 void Auction::randItems()
 {
-	std::vector <int> list_of_randoms;
 	std::fstream plik;
 	srand(time(0));
-	
+
 	for (int i = 0; i < 6; i++)
 	{
 		int random = (rand() % 35);
@@ -74,7 +82,6 @@ void Auction::randItems()
 
 		plik.close();
 	}
-	/**/
 	for (auto i : game->player.rand_items)
 	{
 		cout << i->name << "," << i->value << endl;
@@ -98,8 +105,8 @@ Auction::Auction(Game * game)
 	menu[0].setFillColor(sf::Color::Red);
 	menu[0].setString("Start");
 	menu[0].setPosition(sf::Vector2f(width / 2 - 444, 10));
-	
-	
+
+
 }
 
 
@@ -124,19 +131,19 @@ void Auction::handleInput()
 	{
 		switch (event.type)
 		{
-		
+
 		case sf::Event::Closed:
 			this->game->window.close();
 			break;
 		case sf::Event::TextEntered:
-			if(event.text.unicode == Key::Enter )
+			if (event.text.unicode == Key::Enter)
 			{
 				cout << "Pokazywanie itemow prototyp xD " << endl;
 				showItems();
 				this->game->pushState(new Bidding(this->game));
-				//randItems();
+				randItems();
 			}
-				
+
 		default:
 			break;
 
