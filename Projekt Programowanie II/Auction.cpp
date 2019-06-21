@@ -14,13 +14,14 @@ void Auction::showItems()
 	int height = game->window.getSize().y;
 	int width = game->window.getSize().x;
 
-	if (!Textures[0].loadFromFile("Images/buty.png"))
+	if (!Textures[0].loadFromFile("Images/6.png"))
 	{
 		cout<<"Nie mozna znalezc pliku z tekstura"<<endl;
 		return;
 	}
 	Sprites[0].setTexture(Textures[0]);
 	Sprites[0].setPosition(sf::Vector2f(width/2, height/2));
+	Sprites[0].setScale(4, 4);
 	this->game->window.draw(Sprites[0]);
 	this->game->window.display();
 	sf::Clock clock;
