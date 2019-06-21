@@ -43,9 +43,10 @@ Bidding::Bidding(Game * game)
 	Log.back()->setCharacterSize(30);
 	Log.back()->setFillColor(sf::Color::White);
 	Log.back()->setPosition(sf::Vector2f(10, 80));
-	sf::Clock clock;
-	sf::Time elapsed = clock.restart();
-	float time = elapsed.asSeconds();
+	//sf::Clock clock;
+	//sf::Time elapsed = clock.restart();
+	//float time = elapsed.asSeconds();
+	cout << "wchodza tylko cyferki" << endl;
 }
 
 
@@ -68,13 +69,12 @@ void Bidding::draw()
 
 void Bidding::handleInput()
 {
-
 	int height = game->window.getSize().y;
 	int width = game->window.getSize().x;
-
 	sf::Event event;
 	while (this->game->window.pollEvent(event))
 	{
+		
 		switch (event.type)
 		{
 
@@ -84,7 +84,6 @@ void Bidding::handleInput()
 		case sf::Event::TextEntered:
 			if (event.text.unicode < 58 && event.text.unicode > 47)
 			{
-				
 				input += static_cast<char>(event.text.unicode);
 				cout << input << endl;
 				
@@ -123,6 +122,6 @@ void Bidding::handleInput()
 
 void Bidding::update()
 {
-	
+	//botAI
 
 }

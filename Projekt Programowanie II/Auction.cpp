@@ -9,6 +9,32 @@ using std::endl;
 #include <fstream>
 #include <ctime>
 enum Key {Enter=13};
+void Auction::showItems()
+{
+	int height = game->window.getSize().y;
+	int width = game->window.getSize().x;
+
+	if (!Textures[0].loadFromFile("Images/buty.png"))
+	{
+		cout<<"Nie mozna znalezc pliku z tekstura"<<endl;
+		return;
+	}
+	Sprites[0].setTexture(Textures[0]);
+	Sprites[0].setPosition(sf::Vector2f(width/2, height/2));
+	this->game->window.draw(Sprites[0]);
+	this->game->window.display();
+	sf::Clock clock;
+	sf::Time time = clock.getElapsedTime();
+	sf::Time timer = sf::seconds(3);
+	bool b = (time < timer);
+	while (b)
+	{
+		sf::Time time = clock.getElapsedTime();
+		b = (time < timer);
+		//cout << time.asSeconds() << endl;
+		//cout << timer.asSeconds() << endl;
+	}
+}
 void Auction::update()
 {
 }
@@ -104,6 +130,8 @@ void Auction::handleInput()
 		case sf::Event::TextEntered:
 			if(event.text.unicode == Key::Enter )
 			{
+				cout << "Pokazywanie itemow prototyp xD " << endl;
+				showItems();
 				this->game->pushState(new Bidding(this->game));
 				//randItems();
 			}

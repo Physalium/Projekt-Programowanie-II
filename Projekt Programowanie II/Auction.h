@@ -4,7 +4,7 @@
 #define AUCTION_H
 
 #include "GameState.h"
-
+#include <array>
 #define MAX_NUMBER 1
 
 class Auction :
@@ -13,8 +13,11 @@ class Auction :
 
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER];
+	std::array <sf::Texture,6> Textures;
+	std::array <sf::Sprite,6> Sprites;
 
 public:
+	void showItems();
 	virtual void update();
 	void randItems();
 	virtual ~Auction();
