@@ -6,17 +6,22 @@
 #include "Bidding.h"
 using std::cout;
 using std::endl;
+#include <algorithm>
 #include <fstream>
 #include <ctime>
 #include <sstream> 
 #include <iterator> 
 #include <iostream> 
 enum Key { Enter = 13 };
+int EnterPressed = 0;
 void Auction::showItems()
 {
 
 	int height = game->window.getSize().y;
 	int width = game->window.getSize().x;
+
+	
+
 	for (int i = 0; i < 6; i++)
 	{
 
@@ -31,6 +36,7 @@ void Auction::showItems()
 		Sprites[i].setPosition(sf::Vector2f(width / 2.5 + 60*i, height / 2));
 		this->game->window.draw(Sprites[i]);
 	}
+	
 	this->game->window.display();
 
 
@@ -54,13 +60,18 @@ void Auction::randItems()
 {
 	std::fstream plik;
 	srand(time(0));
-
-	for (int i = 0; i < 6; i++)
+	int non_dupes=0;
+	while(non_dupes<6)
 	{
 		int random = (rand() % 35 );
 		int random1 = random + 1;
+		if (std::find(list_of_randoms.begin(), list_of_randoms.end(), random1) != list_of_randoms.end())
+		{
+			continue;
+		}
+		non_dupes++;
 		list_of_randoms.push_back(random1);
-
+		
 		std::string rand_item = {};
 
 		plik.open("items.txt", std::ios::in);
@@ -75,7 +86,7 @@ void Auction::randItems()
 			int c;
 			plik >> a >> b >> c;
 
-			game->player.rand_items.push_back(new Items(a, b, c));
+			items_in_garage.push_back(new Items(a, b, c));
 		}
 		else
 		{
@@ -85,7 +96,7 @@ void Auction::randItems()
 		rand_item = {};
 		plik.close();
 	}
-	for (auto i : game->player.rand_items)
+	for (auto i : items_in_garage)
 	{
 		cout << i->id << ", "<< i->name << "," << i->value << endl;
 	}
@@ -98,6 +109,7 @@ Auction::Auction(Game * game)
 	int height = game->window.getSize().y;
 	int width = game->window.getSize().x;
 
+	
 	if (!font.loadFromFile("consola.ttf"))
 	{
 		std::cout << "Cant find consola.ttfs file" << std::endl;
@@ -109,7 +121,12 @@ Auction::Auction(Game * game)
 	menu[0].setString("Start");
 	menu[0].setPosition(sf::Vector2f(width / 2 - 444, 10));
 
-
+	if (!garageClosed.loadFromFile("Images/garage_closed.png"))
+		cout << "Nie ma garage_closed.png";
+	if (!garageOpen.loadFromFile("Images/garage_open.png"))
+		cout << "Nie ma garage_open.png";
+	Garage.setTexture(garageClosed);
+	Garage.setPosition(sf::Vector2f(200,200));
 }
 
 
@@ -123,7 +140,8 @@ void Auction::draw()
 	{
 		this->game->window.draw(menu[i]);
 	}
-
+	
+	this->game->window.draw(Garage);
 	return;
 }
 
@@ -141,10 +159,24 @@ void Auction::handleInput()
 		case sf::Event::TextEntered:
 			if (event.text.unicode == Key::Enter)
 			{
-				cout << "Pokazywanie itemow prototyp xD " << endl;
-				randItems();
-				showItems();
-				this->game->pushState(new Bidding(this->game));
+				if (EnterPressed==0)
+				{
+					
+					cout << "Pokazywanie itemow prototyp xD " << endl;
+					Garage.setTexture(garageOpen);
+					menu->setString("");
+					game->window.draw(menu[0]);
+					game->window.draw(Garage);
+					randItems();
+					
+					//showItems();
+					
+				}
+				if (EnterPressed == 1)
+				{
+					this->game->pushState(new Bidding(this->game));
+				}
+				EnterPressed++;
 			}
 
 		default:

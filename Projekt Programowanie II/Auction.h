@@ -15,7 +15,10 @@ class Auction :
 	sf::Text menu[MAX_NUMBER];
 	std::array <sf::Texture,6> Textures;
 	std::array <sf::Sprite,6> Sprites;
-
+	sf::Texture garageClosed;
+	sf::Texture garageOpen;
+	sf::Sprite Garage;
+	std::vector <Items*> items_in_garage;
 public:
 	std::vector<int> list_of_randoms;
 	void showItems();
