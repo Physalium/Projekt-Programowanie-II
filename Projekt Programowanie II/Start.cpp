@@ -22,7 +22,7 @@ Start::Start(Game* game)
 
 	menu[0].setFont(font);
 	menu[0].setCharacterSize(60);
-	menu[0].setFillColor(sf::Color::Blue);
+	menu[0].setFillColor(sf::Color::Black);
 	menu[0].setString("Symulator aukcji garazowych");
 	menu[0].setPosition(sf::Vector2f(width/2 - 444, 10));
 
@@ -31,17 +31,36 @@ Start::Start(Game* game)
 	menu[1].setFillColor(sf::Color::White);
 	menu[1].setString(PlayerName);
 	menu[1].setPosition(sf::Vector2f(50, height / (MAX_NUMBER_OF_OPTIONS + 1) * 1 - 100));
+
+	rectangle.setPosition(sf::Vector2f(0, 0));
+	rectangle.setFillColor(sf::Color(255,128,0,255));
+	rectangle.setSize(sf::Vector2f(900, 300));
+	
+	if(!cir.loadFromFile("Images/logo.jpg"))
+	
+	circle.setOutlineThickness(0);
+	circle.setOutlineColor(sf::Color::Red);
+	circle.setRadius(300);
+	circle.setFillColor(sf::Color::White);
+	circle.setPointCount(8);
+	circle.setPosition(sf::Vector2f(180, 300));
+	logo.setTexture(cir);
+	logo.setPosition(300, 450);
+	
 }
 
 
 
 void Start::draw()
 {
+	this->game->window.draw(rectangle);
+	this->game->window.draw(circle);
 	for (int i = 0; i < MAX_NUMBER_OF_OPTIONS; i++)
 	{
 		this->game->window.draw(menu[i]);
 	}
-
+	this->game->window.draw(logo);
+	
 	return;
 }
 

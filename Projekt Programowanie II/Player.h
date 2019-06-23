@@ -4,7 +4,6 @@
 #include <vector>
 class Player
 {
-	int currentBidding = 0;
 	std::string PlayerName="default";
 	// vector <Upgrade> upgrade 
 	int Balance = 1000;

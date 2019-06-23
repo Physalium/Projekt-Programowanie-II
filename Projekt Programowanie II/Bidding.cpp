@@ -4,10 +4,23 @@
 #include "GameState.h"
 #include <iostream>
 #include <string>
-
+#include <random>
 using std::cout;
 using std::endl;
 enum Key { Enter = 13 };
+
+thread_local std::mt19937 gen{ std::random_device{}() };
+
+template<typename T>
+T random(T min, T max) {
+	using dist = std::conditional_t<
+		std::is_integral<T>::value,
+		std::uniform_int_distribution<T>,
+		std::uniform_real_distribution<T>
+	>;
+	return dist{ min, max }(gen);
+}
+
 
 Bidding::Bidding(Game * game)
 {
@@ -44,9 +57,10 @@ Bidding::Bidding(Game * game)
 	Log.back()->setCharacterSize(30);
 	Log.back()->setFillColor(sf::Color::White);
 	Log.back()->setPosition(sf::Vector2f(10, 80));
-	//sf::Clock clock;
-	//sf::Time elapsed = clock.restart();
-	//float time = elapsed.asSeconds();
+	
+	
+	
+	
 	cout << "wchodza tylko cyferki" << endl;
 }
 
@@ -112,6 +126,9 @@ void Bidding::handleInput()
 				Log.back()->setFillColor(sf::Color::White);
 				Log.back()->setPosition(sf::Vector2f(10, (120 + lineCounter * 40)));
 				lineCounter++;
+				Delay = sf::seconds(random(1.0, 4.8));
+				cout << Delay.asSeconds() << endl;
+				timer.restart();
 			}
 
 		default:
@@ -120,15 +137,28 @@ void Bidding::handleInput()
 		}
 	}
 }
+int Bidding::BotResponse()
+{
+
+	
+	if (timer.getElapsedTime().asSeconds() >= Delay.asSeconds())
+	{
+		
+		//cout << "Teeeej" << endl;
+		//timer.restart();
+	}
+	return 5;
+}
 
 void Bidding::update()
 {
+	BotResponse();
 	//botAI
-	int garage_value = 0;;
-	for (auto i : game->items_in_garage)
-	{
-		garage_value += i->value;
-	}
-	cout << "Cena garazu: " << garage_value;
-
+	//int garage_value = 0;;
+	//for (auto i : game->items_in_garage)
+	//{
+		//garage_value += i->value;
+	//}
+	//cout << "Cena garazu: " << garage_value;
+	
 }

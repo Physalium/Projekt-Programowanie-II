@@ -14,6 +14,11 @@ class Start :
 	std::string PlayerName="Podaj nazwe gracza: ";
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_OPTIONS];
+	sf::RectangleShape rectangle;
+	sf::CircleShape circle;
+	sf::Texture cir;
+	sf::Sprite logo;
+
 public:
 	virtual void update();
 	Start(Game* game);
