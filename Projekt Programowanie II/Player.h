@@ -10,7 +10,7 @@ class Player
 	int Balance = 1000;
 	int BotAi(int bid);
 public:
-
+	
 	std::vector <Items*> rand_items;
 	std::string getPlayerName();
 	int getBalance();

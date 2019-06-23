@@ -17,6 +17,7 @@ class Auction :
 	std::array <sf::Sprite,6> Sprites;
 
 public:
+	std::vector<int> list_of_randoms;
 	void showItems();
 	virtual void update();
 	void randItems();
