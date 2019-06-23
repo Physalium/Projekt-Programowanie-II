@@ -16,6 +16,7 @@ class Bidding :
 	std::vector <sf::Text*> Log;
 	sf::Text Chat;
 public:
+	int highestBid = 0;
 	int highestBid=0;
 	int BotResponse();
 	Bidding(Game* game);
@@ -23,5 +24,7 @@ public:
 	virtual void draw();
 	virtual void handleInput();
 	virtual void update();
+	void setMaxValue();
+	void botBidding(Player &bot);
 };
 

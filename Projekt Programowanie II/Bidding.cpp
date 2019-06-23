@@ -5,9 +5,6 @@
 #include <iostream>
 #include <string>
 #include <random>
-using std::cout;
-using std::endl;
-enum Key { Enter = 13 };
 
 thread_local std::mt19937 gen{ std::random_device{}() };
 
@@ -21,6 +18,9 @@ T random(T min, T max) {
 	return dist{ min, max }(gen);
 }
 
+using std::cout;
+using std::endl;
+enum Key { Enter = 13 };
 
 Bidding::Bidding(Game * game)
 {
@@ -28,7 +28,6 @@ Bidding::Bidding(Game * game)
 	bots.push_back(game->bot1);
 	bots.push_back(game->bot2);
 	bots.push_back(game->bot3);
-
 	this->game = game;
 
 	int height = game->window.getSize().y;
@@ -46,6 +45,8 @@ Bidding::Bidding(Game * game)
 	Chat.setString("Napisz wiadomosc: ");
 	Chat.setPosition(sf::Vector2f(10, height - 50));
 
+	setMaxValue(); // cena max jest ustawiana dla bota tej
+	
 	Log.push_back(new sf::Text);
 	Log[0]->setFont(font);
 	Log[0]->setCharacterSize(60);
@@ -57,11 +58,12 @@ Bidding::Bidding(Game * game)
 	Log.back()->setCharacterSize(30);
 	Log.back()->setFillColor(sf::Color::White);
 	Log.back()->setPosition(sf::Vector2f(10, 80));
-	
-	
-	
-	
+	//sf::Clock clock;
+	//sf::Time elapsed = clock.restart();
+	//float time = elapsed.asSeconds();
 	cout << "wchodza tylko cyferki" << endl;
+	
+
 }
 
 
@@ -118,6 +120,7 @@ void Bidding::handleInput()
 				Log.back()->setString(name);
 				input = "";
 				name = "";
+
 				Chat.setString("Napisz wiadomosc: ");
 				cout << "Line counter: " << lineCounter << endl;
 				Log.push_back(new sf::Text);
@@ -137,28 +140,82 @@ void Bidding::handleInput()
 		}
 	}
 }
+
+
+void Bidding::update()
+{
+	//botAI
+	BotResponse();
+
+}
+
+void Bidding::setMaxValue()
+{
+	//liczenie wartosci garazu
+	// ------------------------
+
+	int garage_value = 0;;
+	for (auto i : game->items_in_garage)
+	{
+		garage_value += i->value;
+	}
+	//cout << "Cena garazu: " << garage_value;
+
+	// ----------------------
+
+	double maxValue1 = {};
+	double maxValue2 = {};
+	double maxValue3 = {};
+
+	double rand1; 
+	double rand2; 
+	double rand3;
+	int rand_range = ((rand() % 20));
+
+	if (rand_range < 16)
+	{
+		rand1 = ((rand() % 40) + 60) * 0.01;
+		rand2 = ((rand() % 40) + 60) * 0.01;
+		rand3 = ((rand() % 40) + 60) * 0.01;
+	}
+	else 
+	{
+		rand1 = ((rand() % 30) + 100) * 0.01;
+		rand2 = ((rand() % 30) + 100) * 0.01;
+		rand3 = ((rand() % 30) + 100) * 0.01;
+	}
+
+	//tu se majom cene maksymalna jaaaaaaaaaaa
+	maxValue1 = garage_value * rand1;
+	maxValue2 = garage_value * rand2;
+	maxValue3 = garage_value * rand3;
+
+	// wpisuje do botow jaaaaa
+	game->bot1.BotMaxBit = maxValue1;
+	game->bot2.BotMaxBit = maxValue2;
+	game->bot3.BotMaxBit = maxValue3;
+
+}
 int Bidding::BotResponse()
 {
 
-	
+
 	if (timer.getElapsedTime().asSeconds() >= Delay.asSeconds())
 	{
-		
+
 		//cout << "Teeeej" << endl;
 		//timer.restart();
 	}
 	return 5;
 }
 
-void Bidding::update()
+void Bidding::botBidding(Player &bot)
 {
-	BotResponse();
-	//botAI
-	//int garage_value = 0;;
-	//for (auto i : game->items_in_garage)
-	//{
-		//garage_value += i->value;
-	//}
-	//cout << "Cena garazu: " << garage_value;
-	
+	while (highestBid < bot.BotMaxBit)
+	{
+		int bid_prob = random(0, 20);
+		if(bid_prob < 17)	highestBid += random(20, 100);
+		else highestBid += random(101, 400);
+	}
 }
+
