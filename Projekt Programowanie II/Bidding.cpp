@@ -202,9 +202,25 @@ int Bidding::BotResponse()
 
 	if (timer.getElapsedTime().asSeconds() >= Delay.asSeconds())
 	{
+		while (!Response)
+		{
+			switch (random(1, 3))
+			{
+			case 1:
+				botBidding(game->bot1);
+			case 2:
+				botBidding(game->bot2);
+			case 3:
+				botBidding(game->bot3);
+			default:
+				break;
+			}
+			
+		}
 
+		timer.restart();
 		//cout << "Teeeej" << endl;
-		//timer.restart();
+		
 	}
 	return 5;
 }
@@ -216,6 +232,9 @@ void Bidding::botBidding(Player &bot)
 		int bid_prob = random(0, 20);
 		if(bid_prob < 17)	highestBid += random(20, 100);
 		else highestBid += random(101, 400);
+
+
+		Response = 1;
 	}
 }
 
