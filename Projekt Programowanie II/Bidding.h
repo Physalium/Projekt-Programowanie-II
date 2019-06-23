@@ -4,7 +4,6 @@
 class Bidding :
 	public GameState
 {
-	friend class Auction;
 	float time;
 	std::vector <Player> bots;
 	int lineCounter = 0;
