@@ -4,6 +4,7 @@
 #include "GameState.h"
 #include <iostream>
 #include <string>
+
 using std::cout;
 using std::endl;
 enum Key { Enter = 13 };
@@ -123,8 +124,8 @@ void Bidding::handleInput()
 void Bidding::update()
 {
 	//botAI
-	int garage_value;
-	for (auto i : game->player.rand_items)
+	int garage_value = 0;;
+	for (auto i : game->items_in_garage)
 	{
 		garage_value += i->value;
 	}

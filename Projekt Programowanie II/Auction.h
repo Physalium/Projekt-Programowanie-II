@@ -18,8 +18,9 @@ class Auction :
 	sf::Texture garageClosed;
 	sf::Texture garageOpen;
 	sf::Sprite Garage;
-	std::vector <Items*> items_in_garage;
+	
 public:
+	
 	std::vector<int> list_of_randoms;
 	void showItems();
 	virtual void update();

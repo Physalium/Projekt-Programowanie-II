@@ -86,7 +86,7 @@ void Auction::randItems()
 			int c;
 			plik >> a >> b >> c;
 
-			items_in_garage.push_back(new Items(a, b, c));
+			game->items_in_garage.push_back(new Items(a, b, c));
 		}
 		else
 		{
@@ -96,7 +96,7 @@ void Auction::randItems()
 		rand_item = {};
 		plik.close();
 	}
-	for (auto i : items_in_garage)
+	for (auto i : game->items_in_garage)
 	{
 		cout << i->id << ", "<< i->name << "," << i->value << endl;
 	}

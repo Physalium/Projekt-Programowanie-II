@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.h"
+#include "Auction.h"
 #include <vector>
 class Bidding :
 	public GameState

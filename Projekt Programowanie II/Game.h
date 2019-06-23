@@ -4,12 +4,13 @@
 #include <stack>
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+
 class GameState;
 
 class Game
 {
 public:
-
+	std::vector <Items*> items_in_garage;
 	std::stack<GameState*> states;
 
 	sf::RenderWindow window;
