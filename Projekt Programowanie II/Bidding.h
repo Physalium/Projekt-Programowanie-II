@@ -15,9 +15,9 @@ class Bidding :
 	sf::Font font;
 	std::vector <sf::Text*> Log;
 	sf::Text Chat;
+	bool Response = 0;
 public:
 	int highestBid = 0;
-	int highestBid=0;
 	int BotResponse();
 	Bidding(Game* game);
 	~Bidding();
