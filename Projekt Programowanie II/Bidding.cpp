@@ -10,7 +10,7 @@ enum Key { Enter = 13 };
 
 Bidding::Bidding(Game * game)
 {
-	
+
 	bots.push_back(game->bot1);
 	bots.push_back(game->bot2);
 	bots.push_back(game->bot3);
@@ -25,7 +25,7 @@ Bidding::Bidding(Game * game)
 		std::cout << "Cant find consola.ttf file" << std::endl;
 	}
 
-	
+
 	Chat.setFont(font);
 	Chat.setCharacterSize(40);
 	Chat.setFillColor(sf::Color::White);
@@ -57,7 +57,7 @@ Bidding::~Bidding()
 
 void Bidding::draw()
 {
-	for (auto i:Log)
+	for (auto i : Log)
 	{
 		this->game->window.draw(*i);
 	}
@@ -74,7 +74,7 @@ void Bidding::handleInput()
 	sf::Event event;
 	while (this->game->window.pollEvent(event))
 	{
-		
+
 		switch (event.type)
 		{
 
@@ -86,9 +86,9 @@ void Bidding::handleInput()
 			{
 				input += static_cast<char>(event.text.unicode);
 				cout << input << endl;
-				
-				
-			
+
+
+
 				std::string chat = "Napisz wiadomosc: ";
 				chat += input;
 				Chat.setString(chat);
@@ -109,7 +109,7 @@ void Bidding::handleInput()
 				Log.back()->setFont(font);
 				Log.back()->setCharacterSize(30);
 				Log.back()->setFillColor(sf::Color::White);
-				Log.back()->setPosition(sf::Vector2f(10, (120+lineCounter*40) ) );
+				Log.back()->setPosition(sf::Vector2f(10, (120 + lineCounter * 40)));
 				lineCounter++;
 			}
 
@@ -123,5 +123,11 @@ void Bidding::handleInput()
 void Bidding::update()
 {
 	//botAI
+	int garage_value;
+	for (auto i : game->player.rand_items)
+	{
+		garage_value += i->value;
+	}
+	cout << "Cena garazu: " << garage_value;
 
 }
