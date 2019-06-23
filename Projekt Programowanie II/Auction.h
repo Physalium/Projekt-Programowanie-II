@@ -10,7 +10,7 @@
 class Auction :
 	public GameState
 {
-
+	friend class Bidding;
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER];
 	std::array <sf::Texture,6> Textures;

@@ -20,7 +20,7 @@ void Auction::showItems()
 	for (int i = 0; i < 6; i++)
 	{
 
-	std::string number_of_pic = "Images/" + std::to_string(list_of_randoms[i]) + ".png";
+		std::string number_of_pic = "Images/" + std::to_string(list_of_randoms[i]) + ".png";
 		if (!Textures[i].loadFromFile(number_of_pic))
 		{
 			cout << "Nie mozna znalezc pliku z tekstura" << endl;
@@ -28,7 +28,7 @@ void Auction::showItems()
 		}
 
 		Sprites[i].setTexture(Textures[i]);
-		Sprites[i].setPosition(sf::Vector2f(width / 2.5 + 60*i, height / 2));
+		Sprites[i].setPosition(sf::Vector2f(width / 2.5 + 60 * i, height / 2));
 		this->game->window.draw(Sprites[i]);
 	}
 	this->game->window.display();
@@ -57,7 +57,7 @@ void Auction::randItems()
 
 	for (int i = 0; i < 6; i++)
 	{
-		int random = (rand() % 35 );
+		int random = (rand() % 35);
 		int random1 = random + 1;
 		list_of_randoms.push_back(random1);
 
@@ -79,7 +79,7 @@ void Auction::randItems()
 		}
 		else
 		{
-			cout << "Nie mozna otworzyc pliku .txt" << endl;
+			cout << "Nie mozna otworzyc pliku i chuj .txt" << endl;
 			break;
 		}
 		rand_item = {};
@@ -87,7 +87,7 @@ void Auction::randItems()
 	}
 	for (auto i : game->player.rand_items)
 	{
-		cout << i->id << ", "<< i->name << "," << i->value << endl;
+		cout << i->id << ", " << i->name << "," << i->value << endl;
 	}
 }
 Auction::Auction(Game * game)
@@ -100,7 +100,7 @@ Auction::Auction(Game * game)
 
 	if (!font.loadFromFile("consola.ttf"))
 	{
-		std::cout << "Cant find consola.ttfs file" << std::endl;
+		std::cout << "Cant find consola.ttf file" << std::endl;
 	}
 
 	menu[0].setFont(font);
@@ -144,6 +144,7 @@ void Auction::handleInput()
 				cout << "Pokazywanie itemow prototyp xD " << endl;
 				randItems();
 				showItems();
+				
 				this->game->pushState(new Bidding(this->game));
 			}
 
@@ -153,3 +154,4 @@ void Auction::handleInput()
 		}
 	}
 }
+

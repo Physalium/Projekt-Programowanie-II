@@ -123,5 +123,11 @@ void Bidding::handleInput()
 void Bidding::update()
 {
 	//botAI
+	int garage_value;
+	for (auto i : game->player.rand_items)
+	{
+		garage_value += i->value;
+	}
+	cout << "Cena garazu: " << garage_value;
 
 }
