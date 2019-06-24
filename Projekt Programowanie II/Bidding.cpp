@@ -107,6 +107,9 @@ Bidding::Bidding(Game * game)
 	Log[0]->setFont(font);
 	Log[0]->setCharacterSize(60);
 	Log[0]->setFillColor(sf::Color::White);
+	Log[0]->setOutlineThickness(3);
+
+	Log[0]->setOutlineColor(sf::Color::Red);
 	Log[0]->setString("Start licytacji!");
 	Log[0]->setPosition(sf::Vector2f(width / 2 - 200, 10));
 	Log.push_back(new sf::Text); //przygotowanie kolejnej linijki do pisania
@@ -118,7 +121,14 @@ Bidding::Bidding(Game * game)
 	//sf::Time elapsed = clock.restart();
 	//float time = elapsed.asSeconds();
 	cout << "wchodza tylko cyferki" << endl;
-	
+	clock[0].setFont(font);
+	clock[0].setFillColor(sf::Color::White);
+	clock[0].setCharacterSize(30);
+	clock[0].setPosition(sf::Vector2f(300, 100));
+	clock[1].setFont(font);
+	clock[1].setFillColor(sf::Color::White);
+	clock[1].setCharacterSize(30);
+	clock[1].setPosition(sf::Vector2f(300, 140));
 
 }
 
@@ -137,6 +147,8 @@ void Bidding::draw()
 
 	this->game->window.draw(Chat);
 	this->game->window.draw(Error);
+	this->game->window.draw(clock[0]);
+	this->game->window.draw(clock[1]);
 	return;
 }
 
@@ -224,6 +236,7 @@ void Bidding::handleInput()
 				lineCounter++;
 				Delay = sf::seconds(random(1.5, 4.8));
 				cout << timer.getElapsedTime().asSeconds() << endl;
+				playerResponse = 1;
 				timer.restart();
 			}
 
@@ -246,8 +259,34 @@ void Bidding::update()
 	}
 	//botAI
 	BotResponse();
+	std::string add;
+	std::string clock1 = "Pozostaly czas na";
+	std::string clock2 = "przebicie: ";
+	add=std::to_string(6 - timer.getElapsedTime().asSeconds());
+	add.erase(2, std::string::npos);
+	clock2 += add;
+	clock[0].setString(clock1);
+	clock[1].setString(clock2);
 	//cout << timer.getElapsedTime().asSeconds()<<endl;
 
+	if (Log.back()->getPosition().y > 850)
+	{
+		
+		sf::Text *temp=new sf::Text; 
+		*temp = *Log.back();
+		Log.clear();
+		lineCounter = 0;
+		Log.push_back(temp);
+		Log.back()->setPosition(sf::Vector2f(10, (120 + lineCounter * 40)));
+		lineCounter++;
+		Log.push_back(new sf::Text);
+		Log.back()->setFont(font);
+		Log.back()->setCharacterSize(30);
+		Log.back()->setFillColor(sf::Color::White);
+		Log.back()->setPosition(sf::Vector2f(10, (120 + lineCounter * 40)));
+		lineCounter++;
+	}
+	
 }
 
 void Bidding::setMaxValue()
@@ -301,23 +340,40 @@ void Bidding::loadgame()
 	this->game->pushState(new Menu(this->game));
 	return;
 }
-int Bidding::BotResponse()
+void Bidding::BotResponse()
 {
-
+	int temp = 0;
+	if (temp > 3)
+		return;
 	
 	if (timer.getElapsedTime().asSeconds() >= Delay.asSeconds())
 	{
-
+		
+		int id = random(1, 3);
 		
 		while (!Response)
 		{
-			int id = random(1, 3);
+			temp++;
+			if (temp > 3)
+				return;
 			if (lastId == id && Counter>0)
 			{
-				id = random(1, 3);
+				switch (id)
+				{
+				case 1:
+					id = 2;
+					break;
+				case 2:
+					id = 3;
+					break;
+				case 3:
+					id = 1;
+					break;
+				default:
+					break;
+				}
 				cout << "Tosamo" << endl;
 				//Delay = sf::seconds(0.1);
-				break;
 			}
 
 			lastId = id;
@@ -337,30 +393,30 @@ int Bidding::BotResponse()
 			default:
 				break;
 			}
-			
-
-			if (timer.getElapsedTime().asSeconds()>=7)
+			if (timer.getElapsedTime().asSeconds() >= 6)
 			{
 
-				Error.setString("Wygrana!");
-				game->player.rand_items = game->items_in_garage;
-				showItems();
-				loadgame();
-				/*
-				if (highestBid < game->player.getBalance())
+				if (highestBid <= game->player.getBalance() && playerResponse == 1)
 				{
 					Error.setString("Wygrana!");
 					game->player.rand_items = game->items_in_garage;
+					game->player.setBalance(game->player.getBalance() - highestBid);
 					showItems();
+					loadgame();
+					return;
 				}
 				else
 				{
 					Error.setString("Przegrales");
+					loadgame();
 				}
-				*/
-				return 5;
+				cout << "weszloooooo";
 			}
+			
+			
+			
 		}
+		//cout << "weszlo" << endl;
 		Counter++;
 		Response = 0;
 		Delay = sf::seconds(random(1.0, 4.8));
@@ -369,7 +425,7 @@ int Bidding::BotResponse()
 		//cout << "Teeeej" << endl;
 		
 	}
-	return 5;
+	
 }
 
 void Bidding::botBidding(Player &bot)
@@ -393,7 +449,8 @@ void Bidding::botBidding(Player &bot)
 		Log.back()->setPosition(sf::Vector2f(10, (120 + lineCounter * 40)));
 		lineCounter++;
 		Response = 1;
-
+		playerResponse = 0;
 	}
+	
 }
 

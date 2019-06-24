@@ -23,7 +23,8 @@ void Menu::draw()
 	
 	return;
 }
-
+std::string Money;
+std::string costam;
 
 void Menu::handleInput()
 {
@@ -57,10 +58,15 @@ void Menu::handleInput()
 					{
 						sum += a->value;
 
-
 					}
+					sum += game->player.getBalance();
 					game->player.setBalance(sum);
 					game->player.rand_items.clear();
+					Money = std::to_string(game->player.getBalance());
+					costam = "Stan konta: ";
+					costam += Money;
+					costam += "$";
+					info[2].setString(costam);
 					break;
 				case 2:
 					std::cout << "LICYTUJ----" << std::endl;
@@ -107,6 +113,7 @@ Menu::Menu(Game * game)
 	std::string Money = std::to_string(game->player.getBalance());
 	std::string costam = "Stan konta: ";
 	costam += Money;
+	costam += "$";
 	info[2].setFont(font);
 	info[2].setCharacterSize(30);
 	info[2].setFillColor(sf::Color::White);

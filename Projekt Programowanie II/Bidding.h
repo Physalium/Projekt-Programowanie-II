@@ -5,14 +5,16 @@
 class Bidding :
 	public GameState
 {
+	sf::Text clock[2];
 	sf::Text Message;
+	bool playerResponse = 0;
 	int lastId = 0;
 	int Counter=0;
 	bool FirstRound = true;
 	sf::Clock timer;
 	sf::Clock error;
 	bool errorr = 0;
-	sf::Time Delay=sf::seconds(10);
+	sf::Time Delay=sf::seconds(4);
 	friend class Auction;
 	float time;
 	std::vector <Player> bots;
@@ -32,7 +34,7 @@ public:
 	void showItems();
 	void loadgame();
 	int highestBid = 0;
-	int BotResponse();
+	void BotResponse();
 	Bidding(Game* game);
 	~Bidding();
 	virtual void draw();
