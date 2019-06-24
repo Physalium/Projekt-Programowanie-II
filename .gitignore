@@ -31,9 +31,6 @@ bld/
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -331,5 +328,3 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-*.vcxproj
-*.sln
