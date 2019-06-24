@@ -5,8 +5,14 @@
 class Bidding :
 	public GameState
 {
+	sf::Text Message;
+	int lastId = 0;
+	int Counter=0;
+	bool FirstRound = true;
 	sf::Clock timer;
-	sf::Time Delay;
+	sf::Clock error;
+	bool errorr = 0;
+	sf::Time Delay=sf::seconds(10);
 	friend class Auction;
 	float time;
 	std::vector <Player> bots;
@@ -16,7 +22,15 @@ class Bidding :
 	std::vector <sf::Text*> Log;
 	sf::Text Chat;
 	bool Response = 0;
+	sf::Text Error;
+	std::array <sf::Texture, 6> Textures;
+	std::array <sf::Sprite, 6> Sprites;
+	sf::Texture garageClosed;
+	sf::Texture garageOpen;
+	sf::Sprite Garage;
 public:
+	void showItems();
+	void loadgame();
 	int highestBid = 0;
 	int BotResponse();
 	Bidding(Game* game);

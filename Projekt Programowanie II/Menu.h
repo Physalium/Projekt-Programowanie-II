@@ -10,7 +10,7 @@
 class Menu :
 	public GameState
 {
-	
+	int sum = 0;
 	int selectedItemIndex;
 	sf::Font font;
 	sf::Text menu[MAX_NUMBER_OF_ITEMS];

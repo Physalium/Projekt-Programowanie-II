@@ -7,7 +7,7 @@ class Player
 	int currentBidding = 0;
 	std::string PlayerName = "default";
 	// vector <Upgrade> upgrade 
-	int Balance = 1000;
+	int Balance = 10000;
 	int BotAi(int bid);
 public:
 	int BotMaxBit = 0;

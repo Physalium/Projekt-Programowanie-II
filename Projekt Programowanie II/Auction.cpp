@@ -175,6 +175,7 @@ void Auction::handleInput()
 				if (EnterPressed == 1)
 				{
 					this->game->pushState(new Bidding(this->game));
+					EnterPressed--;
 				}
 				EnterPressed++;
 			}

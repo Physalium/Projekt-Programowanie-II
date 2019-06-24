@@ -52,6 +52,15 @@ void Menu::handleInput()
 					break;
 				case 1:
 					std::cout << "SPRZEDAJ PRZEDMIOTY----" << std::endl;
+					
+					for (auto a : this->game->player.rand_items)
+					{
+						sum += a->value;
+
+
+					}
+					game->player.setBalance(sum);
+					game->player.rand_items.clear();
 					break;
 				case 2:
 					std::cout << "LICYTUJ----" << std::endl;
@@ -95,11 +104,13 @@ Menu::Menu(Game * game)
 	info[1].setFillColor(sf::Color::White);
 	info[1].setString("Posiadane ulepszenia: ");
 	info[1].setPosition(sf::Vector2f(0, height / (INFO_NUMBER_OF_ITEMS + 1) * 2 - 100));
-
+	std::string Money = std::to_string(game->player.getBalance());
+	std::string costam = "Stan konta: ";
+	costam += Money;
 	info[2].setFont(font);
 	info[2].setCharacterSize(30);
 	info[2].setFillColor(sf::Color::White);
-	info[2].setString("Stan Konta: ");
+	info[2].setString(costam);
 	info[2].setPosition(sf::Vector2f(0, height / (INFO_NUMBER_OF_ITEMS + 1) * 3 - 100));
 
 	menu[0].setFont(font);

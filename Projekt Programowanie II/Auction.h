@@ -29,6 +29,7 @@ public:
 	Auction(Game* game);
 	virtual void draw();
 	virtual void handleInput();
+	friend class Game;
 };
 
 #endif

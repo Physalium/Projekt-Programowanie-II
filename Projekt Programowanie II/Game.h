@@ -24,9 +24,10 @@ public:
 	GameState* peekState();
 
 	void gameLoop();
-
+	void showItems();
 	Game();
 	~Game();
+	friend class Auction;
 };
 
 #endif /* GAME_HPP */

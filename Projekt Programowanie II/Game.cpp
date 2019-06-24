@@ -2,9 +2,13 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
-
+#include "Auction.h"
+#include <vector>
+#include <iostream>
 #include "game.h"
 #include "gamestate.h"
+using std::cout;
+using std::endl;
 
 void Game::pushState(GameState* state)
 {
@@ -35,6 +39,8 @@ GameState* Game::peekState()
 	if (this->states.empty()) return nullptr;
 	return this->states.top();
 }
+
+
 
 void Game::gameLoop()
 {
