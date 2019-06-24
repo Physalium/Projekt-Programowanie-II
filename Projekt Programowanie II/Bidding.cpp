@@ -101,7 +101,7 @@ Bidding::Bidding(Game * game)
 	Error.setCharacterSize(30);
 	Error.setFillColor(sf::Color::Red);
 	Error.setString(" ");
-	Error.setPosition(sf::Vector2f(width / 2 , 600));
+	Error.setPosition(sf::Vector2f(width / 2-300 , 600));
 
 	Log.push_back(new sf::Text);
 	Log[0]->setFont(font);
@@ -399,6 +399,14 @@ void Bidding::BotResponse()
 				if (highestBid <= game->player.getBalance() && playerResponse == 1)
 				{
 					Error.setString("Wygrana!");
+					Error.setCharacterSize(100);
+					sf::Clock temp;
+					this->game->window.draw(Error);
+					this->game->window.display();
+					while (temp.getElapsedTime().asSeconds() < 1)
+					{
+					
+					}
 					game->player.rand_items = game->items_in_garage;
 					game->player.setBalance(game->player.getBalance() - highestBid);
 					showItems();
@@ -408,6 +416,14 @@ void Bidding::BotResponse()
 				else
 				{
 					Error.setString("Przegrales");
+					Error.setCharacterSize(100);
+					sf::Clock temp;
+					this->game->window.draw(Error);
+					this->game->window.display();
+					while (temp.getElapsedTime().asSeconds() < 1)
+					{
+
+					}
 					loadgame();
 				}
 				cout << "weszloooooo";

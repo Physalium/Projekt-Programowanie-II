@@ -2,6 +2,7 @@
 #include <SFML/Window.hpp>
 #include "Menu.h"
 #include "Auction.h"
+#include "Upgrades.h"
 #include "GameState.h"
 #include <iostream>
 using std::cout;
@@ -50,6 +51,8 @@ void Menu::handleInput()
 				{
 				case 0:
 					std::cout << "ULEPSZENIA---" << std::endl;
+					this->game->pushState(new Upgrades(this->game));
+					return;
 					break;
 				case 1:
 					std::cout << "SPRZEDAJ PRZEDMIOTY----" << std::endl;
@@ -109,6 +112,7 @@ Menu::Menu(Game * game)
 	info[1].setCharacterSize(30);
 	info[1].setFillColor(sf::Color::White);
 	info[1].setString("Posiadane ulepszenia: ");
+	
 	info[1].setPosition(sf::Vector2f(0, height / (INFO_NUMBER_OF_ITEMS + 1) * 2 - 100));
 	std::string Money = std::to_string(game->player.getBalance());
 	std::string costam = "Stan konta: ";
@@ -138,12 +142,14 @@ Menu::Menu(Game * game)
 	menu[2].setString("LICYTUJ");
 	menu[2].setPosition(sf::Vector2f(width / 2 + 100, height / (MAX_NUMBER_OF_ITEMS + 1) * 3));
 
-	selectedItemIndex = 0;
+	selectedItemIndex = 1;
 }
 
 
 void Menu::update()
 {
+	if (this->game->player.X == 1)
+		info[1].setString("Posiadane ulepszenia: X-Ray");
 }
 
 void Menu::MoveUp()

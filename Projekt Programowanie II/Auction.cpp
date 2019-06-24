@@ -33,7 +33,7 @@ void Auction::showItems()
 		}
 
 		Sprites[i].setTexture(Textures[i]);
-		Sprites[i].setPosition(sf::Vector2f(width / 2.5 + 60*i, height / 2));
+		Sprites[i].setPosition(sf::Vector2f(width / 2.5 + 60*i -60, height / 2));
 		this->game->window.draw(Sprites[i]);
 	}
 	
@@ -168,8 +168,8 @@ void Auction::handleInput()
 					game->window.draw(menu[0]);
 					game->window.draw(Garage);
 					randItems();
-					
-					//showItems();
+					if(this->game->player.X==1)
+						showItems();
 					
 				}
 				if (EnterPressed == 1)
