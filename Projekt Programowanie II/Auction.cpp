@@ -167,6 +167,8 @@ void Auction::handleInput()
 					menu->setString("");
 					game->window.draw(menu[0]);
 					game->window.draw(Garage);
+					game->items_in_garage.clear();
+					list_of_randoms.clear();
 					randItems();
 					if(this->game->player.X==1)
 						showItems();

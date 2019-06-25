@@ -26,7 +26,7 @@ void Menu::draw()
 }
 std::string Money;
 std::string costam;
-
+int sumitems = 0;
 void Menu::handleInput()
 {
 	sf::Event event;
@@ -59,11 +59,14 @@ void Menu::handleInput()
 					
 					for (auto a : this->game->player.rand_items)
 					{
-						sum += a->value;
+						sumitems += a->value;
 
 					}
+					sum = sumitems;
+					sumitems = 0;
 					sum += game->player.getBalance();
-					game->player.setBalance(sum);
+					if(sum!= game->player.getBalance())
+						game->player.setBalance(sum);
 					game->player.rand_items.clear();
 					Money = std::to_string(game->player.getBalance());
 					costam = "Stan konta: ";

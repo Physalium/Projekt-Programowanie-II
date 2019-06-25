@@ -23,7 +23,7 @@ using std::endl;
 enum Key { Enter = 13 };
 void Bidding::showItems()
 {
-	
+
 
 	Message.setFont(font);
 	Message.setCharacterSize(50);
@@ -33,8 +33,7 @@ void Bidding::showItems()
 	int height = game->window.getSize().y;
 	int width = game->window.getSize().x;
 
-
-
+	
 	for (int i = 0; i < 6; i++)
 	{
 
@@ -48,7 +47,7 @@ void Bidding::showItems()
 		Sprites[i].setTexture(Textures[i]);
 		Sprites[i].setPosition(sf::Vector2f(width / 2.5 + 60 * i, height / 2));
 		this->game->window.draw(Sprites[i]);
-		
+
 	}
 	this->game->window.draw(Message);
 	this->game->window.display();
@@ -65,7 +64,7 @@ void Bidding::showItems()
 		//cout << time.asSeconds() << endl;
 		//cout << timer.asSeconds() << endl;
 	}
-
+	//game->items_in_garage.clear();
 }
 
 Bidding::Bidding(Game * game)
@@ -256,7 +255,7 @@ void Bidding::update()
 		{
 			Error.setString("");
 		}
-	}
+	}//kocham programowanie 2
 	//botAI
 	BotResponse();
 	std::string add;
@@ -272,12 +271,21 @@ void Bidding::update()
 	if (Log.back()->getPosition().y > 850)
 	{
 		
-		sf::Text *temp=new sf::Text; 
-		*temp = *Log.back();
+		std::string temp;
+		
+		temp= Log.at(Log.size() - 2)->getString();
 		Log.clear();
 		lineCounter = 0;
-		Log.push_back(temp);
+		cout << "Ostatni string::" << temp << endl;
+		Log.push_back(new sf::Text);
+		Log.back()->setString(temp);
+		Log.back()->setFont(font);
+		Log.back()->setCharacterSize(30);
+		Log.back()->setFillColor(sf::Color::White);
 		Log.back()->setPosition(sf::Vector2f(10, (120 + lineCounter * 40)));
+		game->window.clear();
+		game->window.draw(*Log.back());
+		game->window.display();
 		lineCounter++;
 		Log.push_back(new sf::Text);
 		Log.back()->setFont(font);
@@ -324,12 +332,12 @@ void Bidding::setMaxValue()
 		rand3 = ((rand() % 30) + 100) * 0.01;
 	}
 
-	//tu se majom cene maksymalna jaaaaaaaaaaa
+	
 	maxValue1 = garage_value * rand1;
 	maxValue2 = garage_value * rand2;
 	maxValue3 = garage_value * rand3;
 
-	// wpisuje do botow jaaaaa
+	
 	game->bot1.BotMaxBit = maxValue1;
 	game->bot2.BotMaxBit = maxValue2;
 	game->bot3.BotMaxBit = maxValue3;
@@ -337,6 +345,7 @@ void Bidding::setMaxValue()
 }
 void Bidding::loadgame()
 {
+	
 	this->game->pushState(new Menu(this->game));
 	return;
 }
@@ -373,7 +382,7 @@ void Bidding::BotResponse()
 					break;
 				}
 				cout << "Tosamo" << endl;
-				//Delay = sf::seconds(0.1);
+				
 			}
 
 			lastId = id;
@@ -424,21 +433,22 @@ void Bidding::BotResponse()
 					{
 
 					}
+					
 					loadgame();
 				}
-				cout << "weszloooooo";
+				
 			}
 			
 			
 			
 		}
-		//cout << "weszlo" << endl;
+		
 		Counter++;
 		Response = 0;
 		Delay = sf::seconds(random(1.0, 4.8));
 		timer.restart();
 		
-		//cout << "Teeeej" << endl;
+		
 		
 	}
 	
